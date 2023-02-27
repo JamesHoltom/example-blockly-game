@@ -12,3 +12,9 @@ The game is split into 2 phases, which are:
 In the testing sequence, the results of each item are predetermined before the animated sequence plays. With this, the player can opt to skip the animation and head straight to the results.
 
 After the sequence finishes, or if the player skips it, a results screen will open, showing the player how well their function handled the test items.
+
+## Building
+
+Node.js and NPM are required to run the project, which uses _webpack-dev-server_ to run locally.
+
+Clone the project with `git clone https://github.com/JamesHoltom/example-blockly-game.git` and run `npm start` to build and serve the project at localhost:9000.
