@@ -1,0 +1,29 @@
+{
+  "kind": "flyoutToolbox",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "controls_if"
+    },
+    {
+      "kind": "block",
+      "type": "logic_compare"
+    },
+    {
+      "kind": "block",
+      "type": "math_number"
+    },
+    {
+      "kind": "block",
+      "type": "custom_incoming_number"
+    },
+    {
+      "kind": "block",
+      "type": "custom_approve"
+    },
+    {
+      "kind": "block",
+      "type": "custom_reject"
+    }
+  ]
+}

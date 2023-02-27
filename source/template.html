@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+  </head>
+  <body>
+    <div id="header" class="container-fluid">
+      <h1><%= htmlWebpackPlugin.options.title %></h1>
+    </div>
+    <div id="game_container" class="container-fluid">
+      <div class="row">
+        <div id="blocks_workspace" class="col"></div>
+        <div id="game_window" class="col-auto"></div>
+      </div>
+    </div>
+    <div id="menu" class="container-fluid">
+      <div id="design_phase">
+        <button id="show_prompt" data-bs-toggle="modal" data-bs-target="#modal_pane">Show Prompt</button>
+        <button id="start_test">Start</button>
+      </div>
+      <div id="play_phase" class="hidden">
+        <button id="skip_test">Skip</button>
+        <button id="cancel_test">Cancel</button>
+      </div>
+    </div>
+    <div id="modal_pane" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div id="prompt_content" class="modal-content hidden">
+          <div class="modal-header">
+            <h5>Example Game</h5>
+          </div>
+          <div class="modal-body">
+            <p>Using the toolbox on the left, connect blocks together to form a function.</p>
+            <p>On the right, numbers will fly in and pass the gate.</p>
+            <p>To win the game, make a function that <span class="pass_motif">pass</span>'s all numbers between 7 and 11, and <span class="fail_motif">fail</span>'s everything else.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+          </div>
+        </div>
+        <div id="results_content" class="modal-content hidden">
+          <div class="modal-header">
+            <h5 id="results_title"></h5>
+          </div>
+          <div class="modal-body">
+            <p>These are the results:</p>
+            <p>Number passed: <span id="results_passed"></span></p>
+            <p>Number failed: <span id="results_failed"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button id="results_confirm" class="btn btn-primary" data-bs-dismiss="modal">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <img src="logo_built_on.png" class="position-absolute bottom-0 end-0 m-2" width="200" />
+
+    <script type="application/javascript" src="bootstrap.min.js" defer></script>
+  </body>
+</html>

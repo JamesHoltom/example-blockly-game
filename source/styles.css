@@ -1,0 +1,30 @@
+.hidden {
+  display: none !important;
+}
+
+#header {
+  height: 60px;
+}
+
+#game_container > div {
+  --bs-gutter-x: 0;
+}
+
+#game_window {
+  width: 960px;
+  height: 480px;
+}
+
+#blocks_workspace {
+  height: 480px;
+}
+
+.pass_motif {
+  background-color: #AFA;
+  font-weight: bold;
+}
+
+.fail_motif {
+  background-color: #FAA;
+  font-weight: bold;
+}
