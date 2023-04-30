@@ -28,7 +28,7 @@ export class TestItem {
    * @param {TestFunc}  correctFunc The correct function.
    */
   constructor(testFunc: TestFunc, correctFunc: TestFunc) {
-    this.value = Math.round(Math.random() * 50);
+    this.value = Math.round(Math.random() * 30);
     this.willPass = testFunc(this.value);
     this.shouldPass = correctFunc(this.value);
   }
@@ -79,10 +79,10 @@ export function Run(code: string) : TestResults
   try {
     /**
      * Runs the player's function against a value.
-     * @param {number} input The value to test.
+     * @param {number} _input The value to test.
      * @returns {boolean} If the value meets the criteria of the function.
      */
-    const TestingFunction: TestFunc = (input: number): boolean => {
+    const TestingFunction: TestFunc = (_input: number): boolean => {
       let retVal: boolean = true;
 
       eval(code);

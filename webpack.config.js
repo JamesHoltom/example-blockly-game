@@ -39,7 +39,6 @@ module.exports = {
   plugins: [
     new ExtractCssChunksWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Example Game',
       template: path.resolve(__dirname, "source/template.html")
     }),
     new CopyWebpackPlugin({

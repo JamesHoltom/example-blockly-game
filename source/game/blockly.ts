@@ -42,7 +42,7 @@ defineBlocksWithJsonArray([
  * This block generates code to get the input variable
  * @see tester.ts:85 
  */
-javascriptGenerator["custom_incoming_number"] = () => ["input", javascriptGenerator.ORDER_ASSIGNMENT];
+javascriptGenerator["custom_incoming_number"] = () => ["_input", javascriptGenerator.ORDER_ASSIGNMENT];
 
 /**
  * This block generates code to set the return value to `true`.

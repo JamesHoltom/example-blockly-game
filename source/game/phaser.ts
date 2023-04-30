@@ -16,12 +16,18 @@ type GateState = "default" | "pass" | "fail";
 
 /**
  * Holds an incoming number.
- * @property {GameObjects.Text} textObj     The game object representing the number, that flys in from the left side of the screen.
- * @property {boolean}          gateValue   Denotes what colour to set the gate to, when this object moves through it.
- * @property {boolean}          reachedGate Has the game object reached the gate, and is now fading?
+ * @property {GameObjects.Text} textObj       The game object representing the number, that flys in from the left side of the screen.
+ * @property {number}           passDirection The direction the number will move after passing the gate.
+ * @property {number}           failDirection The direction the number will move after failing to pass the gate.
+ * @property {number}           failRotation  How much the number will spin after failing to pass the gate.
+ * @property {boolean}          gateValue     Denotes what colour to set the gate to, when this object moves through it.
+ * @property {boolean}          reachedGate   Has the game object reached the gate, and is now fading?
  */
 interface INumberObject {
   textObj: GameObjects.Text
+  passDirection: number
+  failDirection: number
+  failRotation: number
   gateValue: boolean
   reachedGate: boolean
 };
@@ -73,30 +79,48 @@ class GameScene extends Scene
     if (this.running)
     {
       this.testItems.forEach((item) => {
-        // Only update an incoming number if it hasn't yet moved to the gate.
+        // Only update an incoming number if it is active.
         if (item.textObj.active)
         {
-          item.textObj.x += 2
-
-          // Once the incoming number reaches the right of the screen, disable it...
-          if (item.textObj.x >= 720)
+          // When the incoming number reaches the gate, flag it and set the gate's colour...
+          if (item.textObj.x >= 480 && !item.reachedGate)
           {
-            item.textObj.setActive(false);
-            this.valuesFinishedMoving++;
+            this.SetGate(item.gateValue ? "pass" : "fail");
+            setTimeout(() => { this.SetGate("default"); }, 300);
+            item.reachedGate = true;
           }
-          // ... otherwise, fade it and update the gate's colour, when it reaches the gate.
-          else if (item.textObj.x >= 480)
+
+          if (item.reachedGate)
           {
-            if (!item.reachedGate)
+            // Once the incoming number has finished fading, disable it and add it to the count of finished numbers...
+            if (item.textObj.alpha <= 0)
             {
-              this.SetGate(item.gateValue ? "pass" : "fail");
-              setTimeout(() => { this.SetGate("default"); }, 300);
-              item.reachedGate = true;
+              item.textObj.setActive(false);
+              this.valuesFinishedMoving++;
             }
+            // ... otherwise continue to fade it.
             else
             {
               item.textObj.alpha-= 0.015;
             }
+            
+            // Set the number's new direction, after passing/failing to pass the gate.
+            if (item.gateValue)
+            {
+              item.textObj.x += Math.sin(item.passDirection) * 2;
+              item.textObj.y += Math.cos(item.passDirection) * 2;
+            }
+            else
+            {
+              item.textObj.x -= Math.sin(item.failDirection);
+              item.textObj.y += Math.cos(item.failDirection);
+              item.textObj.rotation += item.failRotation;
+            }
+          }
+          /// ... otherwise keep it moving.
+          else
+          {
+            item.textObj.x += 2;
           }
         }
       })
@@ -157,8 +181,11 @@ class GameScene extends Scene
         backgroundColor: shouldPass ? '#AFA' : '#FAA'
       }
     }, true);
+    const passDirection = (0.25 + (Math.random() * 0.5)) * Math.PI;
+    const failDirection = (0.15 + (Math.random() * 0.7)) * Math.PI;
+    const failRotation = (Math.random() * 0.6) - 0.3;
     
-    this.testItems.push({ textObj: text, gateValue: willPass, reachedGate: false });
+    this.testItems.push({ textObj: text, passDirection, failDirection, failRotation, gateValue: willPass, reachedGate: false });
   }
 };
 
