@@ -1,5 +1,5 @@
 {
-  "name": "stem_prototype",
+  "name": "example-blockly-game",
   "version": "1.0.0",
   "description": "",
   "main": "build/main.js",
@@ -9,7 +9,7 @@
     "start": "webpack serve --open"
   },
   "author": "James Holtom",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/bootstrap": "^5.2.6",
     "@types/jquery": "^3.5.16",
