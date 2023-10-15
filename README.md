@@ -1,5 +1,7 @@
 # Gatekeeper Game
 
+_This is a prototype, stripped down to the core features needed to display the game._
+
 ## Game Rules
 
 The player must create a function, consisting of blocks, that will accept/reject a list of randomised values according to the criteria specified in the introductory prompt.

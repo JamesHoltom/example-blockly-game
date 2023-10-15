@@ -146,10 +146,8 @@ class GameScene extends Scene
         this.gateObj.fillColor = 0x0000FF;
         break;
       case "pass":
-        this.gateObj.fillColor = 0x00FF00;
-        break;
       case "fail":
-        this.gateObj.fillColor = 0xFF0000;
+        this.gateObj.fillColor = 0x00AACC;
         break;
     }
   }
